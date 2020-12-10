@@ -1,6 +1,6 @@
 var Queue = require('bull');
 var concurrent = parseInt(process.env.QUEUE_CONCURRENT_PARALLEL) || 1
-var processor = require("./parallelQueueProcessor")
+var processor = require("./process/parallelQueueProcessor")
 
 module.exports = class parallelQueue {
   static instances = []
@@ -20,20 +20,15 @@ module.exports = class parallelQueue {
     }else{
       var queueInstance =  await this.initializeQueue(queueName);
       this.instances.push({queueInstanceName:queueName , queueInstance : queueInstance})
-      return queueInstance
+      return queueInstance;
     }
   }
 
   static async initializeQueue(queueName,){
       const debug = require('debug')(queueName)
-      const incidents = require("../models/extensions/incidents");
-
-      const redisConfig = require("../redis/redis")
-
+      const redisConfig = require("./redis")
       const queueInstance = Queue(queueName, redisConfig);
-    
       queueInstance.process(concurrent, processor) ;
-      
       queueInstance.on('completed', (job, result) => {
         debug(`\n ${queueName} Job completed with result   +++ \n`,result);
       })

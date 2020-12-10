@@ -1,0 +1,30 @@
+{
+  "name": "bulldynamicqueue",
+  "version": "1.0.0",
+  "description": "Dynamic queue for bull",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samirsayyad/bullDynamicQueue.git"
+  },
+  "keywords": [
+    "bull",
+    "redis",
+    "queue",
+    "dynamic"
+  ],
+  "author": "Samir Sayyad",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samirsayyad/bullDynamicQueue/issues"
+  },
+  "homepage": "https://github.com/samirsayyad/bullDynamicQueue#readme",
+  "dependencies": {
+    "bull": "^3.20.0",
+    "debug": "^4.3.1"
+  }
+}
